@@ -24,6 +24,15 @@ class LivreController
     
     }
 
+    public function DisplayLivre($id)
+    {
+        $tab=$this->GestionLivre->getLivreById($id);
+        require "./View/AfficherLivres.view.php";
+        
+        
+       
+    }
+
 
 }
 

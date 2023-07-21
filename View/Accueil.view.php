@@ -45,6 +45,6 @@
 </div>
 <?php
 $content = ob_get_clean();
-$titre="Les livres,representent la connaissance ";
+$titre="Les livres de sciences,representent la connaissance ";
 require "Template.php"
 ?>

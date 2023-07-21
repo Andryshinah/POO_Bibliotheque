@@ -9,6 +9,7 @@
   <div class="container-fluid">
   <a class="navbar-brand" href="Accueil">Accueil</a>
 
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,7 +32,7 @@
   <p class="mb-0 container d-flex justify-content-center">regroupant nos connaissances pour mieux comprendre notre univers<a href="#" class="alert-link"></a></p>
 </div>
 <div class="container">
-<h1 class='rounded border border-dark p-2 m-2 text-center text-white bg-success'><?php if(isset($content)){echo $titre;}?></h1>
+<h1 class='rounded border border-dark p-2 m-2 text-center text-white bg-success'><?php if(isset($titre)){echo $titre;}?></h1>
 <?php if(isset($content)){echo $content;}?>
 </div>
 

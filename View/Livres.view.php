@@ -15,7 +15,7 @@ ob_start();
  
       <tr class="table-active ">
       <td class="align-middle"><img src="Public/images/<?php echo $tab[$i]->getImage(); ?>" style="width: 100px;height: 145px; border-radius:10px;"></td>
-      <td class="align-middle"><?php echo $tab[$i]->getTitre(); ?></td>
+      <td class="align-middle"><a href="<?= URL ?>/l/<?=$tab[$i]->getID()?>"> <?php echo $tab[$i]->getTitre(); ?></a></td>
       <td class="align-middle"><?php echo $tab[$i]->getNbpage(); ?></td>
       <td class="align-middle"><a><button type="button" class="btn btn-primary">Modifier</button></a></td>
       <td class="align-middle"><a><button type="button" class="btn btn-warning">Supprimer</button></a></td>
@@ -31,5 +31,5 @@ ob_start();
 
 $content = ob_get_clean();
 $titre="Mes livres";
-require "./Template.php";
+require "Template.php";
 ?>

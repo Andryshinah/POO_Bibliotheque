@@ -35,6 +35,17 @@ class LivreManager extends Model
             $this->AjoutLivre($L);
         }
     }
+    public function getLivreById($id)
+    { 
+      for($i=0; $i<count($this->Livres) ; $i++) 
+      { 
+
+        if($this->Livres[$i]->getID()===$id)
+        {
+            return $this->Livres[$i];
+        }
+      }
+    }
 
 
 }
