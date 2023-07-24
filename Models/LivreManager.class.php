@@ -12,7 +12,6 @@ class LivreManager extends Model
     public function AjoutLivre($Livre)
     {
         $this->Livres[]=$Livre;
-
     }
     public function getLivre()
     {
@@ -35,6 +34,7 @@ class LivreManager extends Model
             $this->AjoutLivre($L);
         }
     }
+
     public function getLivreById($id)
     { 
       for($i=0; $i<count($this->Livres) ; $i++) 

@@ -1,6 +1,7 @@
 <?php
 require './Controllers/LivresController.controller.php';
-define('URL', (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['HTTP_HOST'] . str_replace('/index.php', '', $_SERVER['REQUEST_URI']));
+// define('URL', (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['HTTP_HOST'] . str_replace('/index.php', '', $_SERVER['PHP_SELF']));
+define('URL',str_replace('Index.php','',(isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'] ));
 
 $LivreController=new \App\Controller\LivreController;
 try 
@@ -12,9 +13,9 @@ try
     else 
     {
         $url=explode("/",filter_var($_GET['page']),FILTER_SANITIZE_URL);
-        for ($i=0; $i < count($url); $i++) { 
-            print_r($url[$i]) ;
-        }
+        // for ($i=0; $i < count($url); $i++) { 
+        //     print_r($url[$i]) ;
+        // }
         switch ($url[0]) 
         {
             case 'Accueil':
@@ -27,7 +28,7 @@ try
                 }
                 elseif($url[1]==="l")
                 {
-                    echo $LivreController->DisplayLivre($url[2]);
+                    return $tab=$LivreController->DisplayLivre($url[2]);
                 }
                 elseif($url[1]==="a")
                 {

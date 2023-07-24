@@ -1,4 +1,6 @@
-<?php ob_start();?>
+<?php ob_start();
+
+?>
 <div class="container d-flex justify-content-between">
 <button type="button" class="btn btn-outline-success">Sciences Naturelles</button>
 <button type="button" class="btn btn-outline-warning">Mathematiques</button>

@@ -1,24 +1,24 @@
 <?php
+use App\LivreManager;
 require_once "./Models/Livre.class.php";
 ob_start();
 ?>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Image</th>
-      <th scope="col">Titres</th>
-      <th scope="col">Nombres de pages</th>
-      <th scope="col" colspan="2" class="align-middle">Actions</th>
-    </tr>
-  </thead>
-  </table>
+<div class="row">
+  <div class="col-6">
+    <img src="<?=URL?>public/images/Classe.png" style="width: 258px; height: 400px; border-radius: 10px;">
+  </div>
+  <div class="col-6">
+    <p style="font-weight: bolder;font-size: 131%;">Titre : <?php echo $tab->getTitre(); ?></p>
+    <p style="font-weight: bolder;font-size: 131%;">Nombre de pages :<?php echo $tab->getNbpage(); ?></p>
+  </div>
+</div>
 
-<a href=""><div class="d-grid gap-2">
-  <button class="btn btn-lg btn-primary" type="button">Ajouter</button>
-</div></a>
+    
+ 
+
+
 
 <?php
-
 $content = ob_get_clean();
 $titre=$tab->getTitre();
 require "Template.php";
