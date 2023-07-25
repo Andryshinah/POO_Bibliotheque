@@ -32,7 +32,7 @@ try
                 }
                 elseif($url[1]==="a")
                 {
-                    echo "ajout d'un livre";
+                    $LivreController->AjoutLivre();
                 }
                 elseif($url[1]==="m")
                 {
@@ -41,6 +41,10 @@ try
                 elseif($url[1]==="s")
                 {
                     echo "suppression d'un livre";
+                }
+                elseif($url[1]==="av")
+                {
+                    $LivreController->AjoutLivreValidation();
                 }
                 else
                 {

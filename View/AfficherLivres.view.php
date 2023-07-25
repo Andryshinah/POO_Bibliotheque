@@ -5,7 +5,7 @@ ob_start();
 ?>
 <div class="row">
   <div class="col-6">
-    <img src="<?=URL?>public/images/Classe.png" style="width: 258px; height: 400px; border-radius: 10px;">
+    <img src="<?=URL?>public/images/<?= $tab->getImage();?>" style="width: 258px; height: 400px; border-radius: 10px;">
   </div>
   <div class="col-6">
     <p style="font-weight: bolder;font-size: 131%;">Titre : <?php echo $tab->getTitre(); ?></p>

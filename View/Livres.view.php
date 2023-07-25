@@ -23,9 +23,11 @@ ob_start();
       <?php } ?>
   </table>
 
-<a href=""><div class="d-grid gap-2">
+<a href="<?= URL?>livres/a">
+  <div class="d-grid gap-2">
   <button class="btn btn-lg btn-primary" type="button">Ajouter</button>
-</div></a>
+  </div>
+</a>
 
 <?php
 
