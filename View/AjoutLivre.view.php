@@ -14,7 +14,7 @@ ob_start();
         <label for="image" style="display: block;margin: -37px 10px 10px -2px;">Image</label>
         <input type="file" class="form-control-file" id="Image" name="Image" >
     </div>
-    <button type="submit" class="btn btn-dark">Enregistrer</button>
+    <button type="submit" name="submit" class="btn btn-dark">Enregistrer</button>
 </form>
 
 <?php

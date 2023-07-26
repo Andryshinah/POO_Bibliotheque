@@ -1,0 +1,29 @@
+Ce code est une fonction en PHP qui vérifie si un fichier est une image valide en se basant sur son type. Voici une explication détaillée de chaque partie du code :
+
+1. Définition des types d'images autorisés :
+   ```php
+   $allowed_types = array(IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF);
+   ```
+   Dans cette ligne, nous créons un tableau `$allowed_types` qui contient les constantes prédéfinies de PHP représentant les types d'images autorisés. Dans ce cas, nous avons spécifié trois types d'images : JPEG, PNG et GIF.
+
+2. Récupération des informations sur le fichier :
+   ```php
+   $image_info = getimagesize($file_path);
+   ```
+   La fonction `getimagesize()` est utilisée pour obtenir des informations sur le fichier image spécifié par `$file_path`. Ces informations incluent la largeur, la hauteur et le type de l'image.
+
+3. Vérification du type d'image :
+   ```php
+   if ($image_info && in_array($image_info[2], $allowed_types)) {
+       return true;
+   }
+   ```
+   Dans cette partie du code, nous vérifions si `$image_info` existe et si le type d'image obtenu à partir de `$image_info[2]` est présent dans le tableau `$allowed_types`. Si c'est le cas, cela signifie que le type d'image est autorisé, et donc la fonction retourne `true`, indiquant que le fichier est une image valide.
+
+4. Retour d'une valeur `false` par défaut :
+   ```php
+   return false;
+   ```
+   Si le type d'image n'est pas dans la liste des types autorisés ou s'il y a eu une erreur lors de l'appel à `getimagesize()`, la fonction retourne `false`, indiquant que le fichier n'est pas une image valide.
+
+En résumé, cette fonction prend le chemin d'un fichier en argument, utilise la fonction `getimagesize()` pour récupérer des informations sur le fichier image, puis vérifie si le type de l'image est parmi ceux autorisés (JPEG, PNG, ou GIF). Si le type d'image est valide, la fonction retourne `true`, sinon elle retourne `false`.
