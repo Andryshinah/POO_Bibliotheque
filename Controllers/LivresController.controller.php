@@ -34,73 +34,105 @@ class LivreController
     {
         require "View/AjoutLivre.view.php";
     }
-    public function AjoutLivreValidation()
-    {
-        if(isset($_POST["submit"])) 
-        {
-            $check = getimagesize($_FILES["Image"]["tmp_name"]);
-            if($check !== false) {
-                echo "File is an image - ";
-                
+
+    // public function AjoutLivreValidation()
+    // {
+    //     $file=$_FILES["Image"];
+    //     $dir="public/images/".$file["name"];
+    //    if(isset($_POST['submit']))
+    //    {
+    //     if (move_uploaded_file($file["tmp_name"], $dir))
+    //     {
+    //         if($this->VerifImage($dir,$file["type"],$file["size"],$file["error"]))
+    //         {
+    //             echo "tout est ok";
+    //         }
+    //         else
+    //         {
+    //             echo "une erreur est survenue";
+    //         }
+    //     }
+            
+    //    }
+    //    else
+    //    {
+    //      echo "une erreur est survenue lors du telechargement du fichier,recommencer la procedure";
+    //    }
+
+        
+    // }
+    // //Mila verifiena existence sy nom ve mitovy ny base sy anat fichier,taille,format,misy error ve?
+
+    // public function VerifImage(string $dir,$format,$taille,$error)
+    // {
+        
+    //     $taille=filesize($dir);
+    //     if(file_exists($dir))
+    //     {
+    //         return true;
+    //             if ($format=="image/jpeg" || $format=="image/png" || $format=="image/jfif" || $format=="image/jpeg") 
+    //             {
+    //                 return true;
+    //                 if($taille<50000 || $error==0)
+    //                 {
+    //                     return true;
+    //                 }
+    //                 else
+    //                 {
+    //                     echo "fichier erreur";
+    //                 }
+    //             }
+    //             else
+    //             {
+    //                 echo "fichier au mavais format";
+
+    //             }
+    //     }
+    //     else
+    //     {
+    //         echo "fichier non telechargé car existe déja";
+
+    //     }
+
+    // }
+   //code corrigé
+   public function AjoutLivreValidation()
+{
+    if (isset($_POST['submit'])) {
+        $file = $_FILES["Image"];
+        $dir = "public/images/" . $file["name"];
+
+        if ($this->VerifImage($dir, $file["type"], $file["size"], $file["error"])) {
+            if (move_uploaded_file($file["tmp_name"], $dir)) {
+                echo "Tout est ok";
             } else {
-                echo "File is not an image.";
+                echo "Une erreur est survenue lors du téléchargement du fichier, recommencez la procédure.";
             }
+        } else {
+            echo "Le fichier n'est pas valide.";
         }
-        else
-        {
-            echo "fichier non pris en charge";
-        }
-     
     }
-    private function VerifImage()
-    {
-        $target_dir = "public/images/";
-        // $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        // $uploadOk = 1;
-        // $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        // Check if image file is a actual image or fake image
-        if(isset($_POST["submit"])) 
-        {
-            $check = getimagesize($_FILES["Image"]["tmp_name"]);
-            if($check !== false) {
-                echo "File is an image - ";
-                
-            } else {
-                echo "File is not an image.";
-            }
-        }
-        else
-        {
-            echo "fichier non pris en charge";
-        }
-        // // Check if file already exists
-        // if (file_exists($target_file)) {
-        //     echo "Sorry, file already exists.";
-        //     $uploadOk = 0;
-        // }
-        // // Check file size
-        // if ($_FILES["fileToUpload"]["size"] > 500000) {
-        //     echo "Sorry, your file is too large.";
-        //     $uploadOk = 0;
-        // }
-        // // Allow certain file formats
-        // if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        // && $imageFileType != "gif" ) {
-        //     echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        //     $uploadOk = 0;
-        // }
-        // // Check if $uploadOk is set to 0 by an error
-        // if ($uploadOk == 0) {
-        //     echo "Sorry, your file was not uploaded.";
-        // // if everything is ok, try to upload file
-        // } else {
-        //     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        //         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-        //     } else {
-        //         echo "Sorry, there was an error uploading your file.";
-        //     }
-        // }
+}
+
+public function VerifImage(string $dir, $format, $taille, $error)
+{
+    if (!file_exists($dir)) {
+        echo "Fichier non téléchargé car il n'existe pas.";
+        return false;
     }
+
+    if ($format != "image/jpeg" && $format != "image/png" && $format != "image/jfif") {
+        echo "Fichier au mauvais format.";
+        return false;
+    }
+
+    if ($taille >= 50000 || $error !== 0) {
+        echo "Fichier erreur.";
+        return false;
+    }
+
+    return true; 
+}
 
 
 }
