@@ -46,6 +46,15 @@ class LivreManager extends Model
         }
       }
     }
+    public function AjoutLivreToBDD($id, $titre, $nbPages, $image)
+    { 
+        $req = $this->getBdd()->prepare("INSERT INTO `livres`( `Titre`, `nbPages`, `image`) VALUES ( :titre, :nbPages, :image)");
+        $req->bindParam(':titre', $titre);
+        $req->bindParam(':nbPages', $nbPages);
+        $req->bindParam(':image', $image);
+        $req->execute();
+    }
+    
 
 
 }

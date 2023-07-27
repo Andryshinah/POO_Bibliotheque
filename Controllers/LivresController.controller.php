@@ -51,21 +51,16 @@ class LivreController
     //         {
     //             echo "une erreur est survenue";
     //         }
-    //     }
-            
+    //     }     
     //    }
     //    else
     //    {
     //      echo "une erreur est survenue lors du telechargement du fichier,recommencer la procedure";
     //    }
-
-        
     // }
-    // //Mila verifiena existence sy nom ve mitovy ny base sy anat fichier,taille,format,misy error ve?
-
+    // //Mila verifiena existence sy nom ve mitovy ny base sy anat fichier,taille,format,misy error v
     // public function VerifImage(string $dir,$format,$taille,$error)
-    // {
-        
+    // { 
     //     $taille=filesize($dir);
     //     if(file_exists($dir))
     //     {
@@ -85,7 +80,6 @@ class LivreController
     //             else
     //             {
     //                 echo "fichier au mavais format";
-
     //             }
     //     }
     //     else
@@ -93,7 +87,6 @@ class LivreController
     //         echo "fichier non telechargé car existe déja";
 
     //     }
-
     // }
    //code corrigé
    public function AjoutLivreValidation()
@@ -103,9 +96,16 @@ class LivreController
         $dir = "public/images/" . $file["name"];
 
         if ($this->VerifImage($dir, $file["type"], $file["size"], $file["error"])) {
-            if (move_uploaded_file($file["tmp_name"], $dir)) {
+            if (move_uploaded_file($file["tmp_name"], $dir)) 
+            {
                 echo "Tout est ok";
-            } else {
+                // var_dump($file);
+                // echo $_POST["nbPages"];
+                $Execute=new LivreManager();
+                $Execute->AjoutLivreToBDD("",basename($dir,PATHINFO_EXTENSION),$_POST["nbPages"],$file["name"]);
+            } 
+            else 
+            {
                 echo "Une erreur est survenue lors du téléchargement du fichier, recommencez la procédure.";
             }
         } else {
