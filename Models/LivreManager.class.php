@@ -15,26 +15,25 @@ class LivreManager extends Model
     }
     public function getLivre()
     {
+
         return $this->Livres;
 
     }
 
     public function chargementLivre()
     {
-        $req=$this->getBdd()->prepare("SELECT * FROM `livres` ORDER BY `Id` ASC");
+        $req = $this->getBdd()->prepare("SELECT * FROM `livres` WHERE `Statut_de_suppression`=0 ORDER BY `Id` ASC");
         $req->execute();
-        $Boky=$req->fetchAll(PDO::FETCH_ASSOC);
-      
+        $Boky = $req->fetchAll(PDO::FETCH_ASSOC);
+    
         $req->closeCursor();
-
-        foreach ($Boky as $livre ) 
-        {
-            $L=new Livre($livre["Id"],$livre["Titre"],$livre["nbPages"],$livre["image"]);
-
+    
+        foreach ($Boky as $livre) {
+            $L = new Livre($livre["Id"], $livre["Titre"], $livre["nbPages"], $livre["image"]);
             $this->AjoutLivre($L);
         }
     }
-
+    
     public function getLivreById($id)
     { 
       for($i=0; $i<count($this->Livres) ; $i++) 
@@ -53,6 +52,17 @@ class LivreManager extends Model
         $req->bindParam(':titre', $titre);
         $req->bindParam(':nbPages', $nbPages);
         $req->bindParam(':image', $image);
+        $req->execute();
+    }
+    public function SupprimerLivreToBDD($id)
+    { 
+        $req = $this->getBdd()->prepare("DELETE FROM `livres` WHERE `Id`=".$id);
+        $req->execute();
+    }
+    
+    public function SuppressionLogiqueLivreToBDD($id)
+    { 
+        $req = $this->getBdd()->prepare("UPDATE `livres` SET `Statut_de_suppression`= 1 WHERE Id=".$id);
         $req->execute();
     }
     

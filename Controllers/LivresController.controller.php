@@ -28,7 +28,6 @@ class LivreController
     {
         $tab=$this->GestionLivre->getLivreById($id);
         require "./View/AfficherLivres.view.php";
- 
     }
     public function AjoutLivre()
     {
@@ -69,14 +68,14 @@ class LivreController
     
     public function ModifierLivre($id)
     {
-        var_dump($Modif=$this->GestionLivre->getLivreById($id));
+        $Modif=$this->GestionLivre->getLivreById($id);
         require "./View/ModificationLivre.view.php";
     }
     
     public function SupprimerLivre($id)
     {
-        var_dump($Modif=$this->GestionLivre->getLivreById($id));
-        require "./View/ModificationLivre.view.php";
+       $Modif=$this->GestionLivre->SuppressionLogiqueLivreToBDD($id);
+        require "./View/Accueil.view.php";
     }
 
 
