@@ -36,11 +36,11 @@ try
                 }
                 elseif($url[1]==="m")
                 {
-                    echo "modification d'un livre";
+                    $LivreController->ModifierLivre($url[2]);
                 }
                 elseif($url[1]==="s")
                 {
-                    echo "suppression d'un livre";
+                    $LivreController->SupprimerLivre($url[2]);
                 }
                 elseif($url[1]==="av")
                 {

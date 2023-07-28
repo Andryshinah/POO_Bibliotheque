@@ -7,7 +7,7 @@ use PDO;
 
 class LivreManager extends Model
 {
-    private $Livres;
+    private $Livres=array();
 
     public function AjoutLivre($Livre)
     {
@@ -46,6 +46,7 @@ class LivreManager extends Model
         }
       }
     }
+
     public function AjoutLivreToBDD($id, $titre, $nbPages, $image)
     { 
         $req = $this->getBdd()->prepare("INSERT INTO `livres`( `Titre`, `nbPages`, `image`) VALUES ( :titre, :nbPages, :image)");
