@@ -46,6 +46,10 @@ try
                 {
                     $LivreController->AjoutLivreValidation();
                 }
+                elseif($url[1]==="mb")
+                {
+                    $LivreController->ModificationLivreToBDD($url[2]);
+                }
                 else
                 {
                     throw new Exception("la page n'existe pas ");

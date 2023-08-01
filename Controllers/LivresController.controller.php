@@ -71,6 +71,42 @@ class LivreController
         $Modif=$this->GestionLivre->getLivreById($id);
         require "./View/ModificationLivre.view.php";
     }
+
+
+    public function ModificationLivreToBDD($id)
+    {
+        $ModificationBDD = new LivreManager();
+    
+        if (isset($_POST["submit"])) {
+            $image = $_FILES['image']['name'];
+            $image_tmp = $_FILES['image']['tmp_name'];
+    
+          
+            if (!empty($image)) 
+            {
+               
+                $upload_dir = './public/images/';
+                $destination_path = $upload_dir . $image;
+                echo $destination_path ;
+                
+                
+                if (move_uploaded_file($image_tmp, $destination_path )) {
+                   
+                    $ModificationBDD->ModifierLivreBDD($id, $_POST['titre'], $_POST['nbPages'], $image);
+                } 
+                else 
+                {
+
+                    echo "Failed to upload the image.";
+                }
+            } 
+            else 
+            {
+                $ModificationBDD->ModifierLivreBDD($id, $_POST['titre'], $_POST['nbPages'], $image);
+            }
+        }
+    }
+    
     
     public function SupprimerLivre($id)
     {
